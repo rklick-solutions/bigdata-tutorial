@@ -1,12 +1,7 @@
 
 $(function(){
-
    //Program a custom submit function for the form
-
-
-   $("#myform").submit(function(event){
-    alert("Hello")
-
+   $("#form-data").submit(function(event){
      //disable the default form submission
      event.preventDefault();
 
