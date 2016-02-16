@@ -7,8 +7,8 @@ import play.api.mvc.{Action, Controller}
   */
 class SparkInAction extends Controller {
 
-  def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+  def inAction = Action {
+    Ok(views.html.spark_in_action("Your new application is ready."))
   }
 
 }
