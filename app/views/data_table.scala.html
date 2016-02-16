@@ -1,0 +1,24 @@
+@(cols: Array[String], dataMap: Array[Map[String, Any]])
+
+<div class="box">
+    <div class="box-header">
+        <i class="fa fa-store"></i>
+        <h3 class="box-title">Data</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body no-padding">
+        <table class="table table-condensed">
+            <tr>
+                @cols.map { col =>
+                <th>@col</th>
+                }
+            </tr>
+            @dataMap.map { row =>
+            <tr>
+                @cols.map { col =>
+                <td>@row.get(col)</td>
+                }
+            <tr>
+                }
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
