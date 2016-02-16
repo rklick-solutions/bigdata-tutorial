@@ -9,8 +9,6 @@ GET     /uploadForm                 controllers.Application.uploadForm
 
 POST    /upload                     controllers.Application.upload
 
-GET     /graph                      controllers.Application.graph
-
 GET     /spark/overview             controllers.SparkOverview.overview
 
 # Map static resources from the /public folder to the /assets URL path

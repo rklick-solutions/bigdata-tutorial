@@ -29,12 +29,4 @@ class Application @Inject()(uploadService: UploadService) extends Controller {
     Ok(result)
   }
 
-  /**
-    *
-    * @return
-    */
-  def graph = Action { implicit request =>
-    Ok(views.html.networkGraph("Playing MultipartFormData"))
-  }
-
 }
