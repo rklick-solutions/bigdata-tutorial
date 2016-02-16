@@ -6,67 +6,43 @@
     "icon": "http://inquidia.com/sites/default/files/spark.png",
     "children": [
         {
-            "name": "Spark Core",
+            "name": "Core",
             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
             "children": [
                 {
                     "name": "Introduction to Apache Spark",
-                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                    "children": [
-                        {"name": "Child 1"},
-                        {"name": "Child 2"},
-                        {"name": "Child 3"}
-                    ]
+                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
                 },
                 {
                     "name": "Feature of Apache Spark",
-                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                    "children": [
-                        {"name": "Child 1"},
-                        {"name": "Child 2"},
-                        {"name": "Child 3"}
-                    ]
-                },
-                {
-                    "name": "Spark Core",
-                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                    "children": [
-                        {"name": "Child 1"},
-                        {"name": "Child 2"},
-                        {"name": "Child 3"}
-                    ]
+                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
                 },
                 {
                     "name": "Initializing Spark",
-                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                    "children": [
-                        {"name": "Child 1"},
-                        {"name": "Child 2"},
-                        {"name": "Child 3"}
-                    ]
+                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
                 },
                 {
                     "name": "RDD's Operations",
                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
                     "children": [
                         {
-                        "name": "Child 1",
+                        "name": "Creating RDD's",
+                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                        },
+                        {
+                        "name": "Transformation",
                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
                         },
                         {
                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 2"
-                        },
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 3"
+                        "name": "Action"
                         }
                     ]
                 }
             ]
         },
         {
-            "name": "Spark SQL",
+            "name": "SQL",
             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
             "children": [
                 {
@@ -85,63 +61,49 @@
                     ]
                 },
                 {
-                    "name": "Create Sql Context ",
+                    "name": "Dataframes",
                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
                     "children": [
                         {
                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 1"},
+                        "name": "Creating Dataframes"},
                         {
                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 2"},
+                        "name": "Dataframe API Functionality",
+                        "children": [
+                                {"icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                                "name": "Action"
+                                },
+                                {"icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                                "name": "Basic Dataframes Function"
+                                },
+                               {"icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                                "name": "Dataframes Operations"
+                                }
+                            ]
+                        },
                         {
                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 3"}
+                        "name": "Interoperating with RDD's",
+                        "children": [
+                                {"icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                                "name": "Inferring the Schema using Reflection"
+                                },
+                                {"icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                                "name": "Programmatically Specifying the Schema"
+                                }
+                            ]
+                        }
                     ]
                 },
                 {
-                    "name": "Create Dataframes",
+                    "name": "Datasets",
                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
                     "children": [
                         {
                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 1"},
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 2"},
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 3"}
-                    ]
-                },
-                {
-                    "name": "Create Datasets",
-                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                    "children": [
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 1"},
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 2"},
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 3"}
-                    ]
-                },
-                {
-                    "name": "Interoperation with RDD's",
-                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                    "children": [
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 1"},
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 2"},
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 3"}
+                        "name": "Creating Datasets"
+                        }
                     ]
                 },
                 {
@@ -150,28 +112,13 @@
                     "children": [
                         {
                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 1"},
+                        "name": "JSON"},
                         {
                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 2"},
+                        "name": "TXT"},
                         {
                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 3"}
-                    ]
-                },
-                {
-                    "name": "Dataframe API",
-                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                    "children": [
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 1"},
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 2"},
-                        {
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                        "name": "Child 3"}
+                        "name": "CSV"}
                     ]
                 }
             ]
@@ -197,13 +144,13 @@
           "children": [
             {
             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-            "name": "Child 1"},
+            "name": "Estimators"},
             {
             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-            "name": "Child 2"},
+            "name": "Transformers"},
             {
             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-            "name": "Child 3"}
+            "name": "Pipelines"}
           ]
         },
         {
@@ -212,76 +159,21 @@
           "children": [
             {
               "name": "Core",
-              "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-              "children": [
-                {
-                "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                "name": "Child 1"},
-                {
-                "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                "name": "Child 2"},
-                {
-                "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                "name": "Child 3"}
-              ]
+              "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
             },
            {
              "name": "PageRank",
-             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-             "children": [
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 1"},
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 2"},
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 3"}
-             ]
+             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
            },
            {
            "name": "Triangle",
-           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-             "children": [
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 1"},
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 2"},
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 3"}
-             ]
+           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
            },
            {"name": "Connected Component",
-           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-             "children": [
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 1"},
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 2"},
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 3"}
-             ]
+           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
            },
            {"name": "Strongly Connected Component",
-           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-             "children": [
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 1"},
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 2"},
-               {
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "name": "Child 3"}
-             ]
+           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
            }
           ]
         },
