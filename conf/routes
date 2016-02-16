@@ -11,6 +11,8 @@ POST    /upload                     controllers.Application.upload
 
 GET     /spark/overview             controllers.SparkOverview.overview
 
+GET     /messages.js                  controllers.JsMessagesController.jsMessages
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 GET     /webjars/*file              controllers.WebJarAssets.at(file)
