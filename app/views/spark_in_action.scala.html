@@ -1,4 +1,4 @@
-@(title: String)
+@(title: String, cols: Array[String], dataMap: Array[Map[String, Any]])
 
 @main(title) {
 
@@ -8,11 +8,11 @@
     <section class="content-header">
         <h1>
             Apache Spark™
-            <small>Overview</small>
+            <small>In Action</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-th"></i> Apache Spark™</a></li>
-            <li class="active">Overview</li>
+            <li class="active">In Action</li>
         </ol>
     </section>
 
@@ -22,33 +22,23 @@
         <div class="row">
             <!-- Left col -->
             <div class="col-md-6 col-lg-8">
-                <div class="box box-default">
-                    <div class="box-body">
-                        <div id="tree"></div>
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        @data_table(cols, dataMap)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        @fun_desc("home")
+                    </div>
+                    <div class="col-lg-6">
+                        @bar_chart(title)
+                    </div>
+                </div>
             </div><!-- /.col -->
 
             <div class="col-md-6 col-lg-4">
-                <div class="box box-default">
-                    <div class="box-header with-border">
-                        <i class="fa fa-sticky-note"></i>
-                        <h3 class="box-title">Descriptions</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <div class="callout bg-gray">
-                            <h4>Creating DataFrames</h4>
-                            <p>A DataFrame is a distributed collection of data, which is organized into named columns. Conceptually, it is equivalent to relational tables with good optimization techniques. A DataFrame can be constructed from an array of different sources such as Hive tables, Structured Data files, external databases, or existing RDDs. Here we are using JSON document named cars.json with the following content and generate a table based on the schema in the JSON document.</p>
-                        </div>
-                        <code lang="scala">
-                            def overview = Action {
-                                Ok(views.html.spark_overview("Your new application is ready."))
-                            }
-                        </code>
-                        <hr>
-                        <img class="img-responsive" src='@routes.Assets.versioned("images/creatingdataframe.png")'>
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
+                @spark_functions(title)
             </div><!-- /.col -->
         </div> <!-- /.row -->
         <!-- END ALERTS AND CALLOUTS -->
