@@ -1,8 +1,4 @@
 
-/*function upload() {
-     alert("Hello")
-   }
-
 $(function(){
 
    //Program a custom submit function for the form
@@ -36,4 +32,4 @@ $(function(){
      return false;
    });
 
-})*/
+})

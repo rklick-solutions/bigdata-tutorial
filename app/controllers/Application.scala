@@ -1,7 +1,6 @@
 package controllers
 
 import com.google.inject.Inject
-import play.api.libs.json.Json
 import play.api.mvc._
 import service.UploadService
 
