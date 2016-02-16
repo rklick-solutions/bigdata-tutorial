@@ -22,3 +22,12 @@ html{
     stroke: lightgray;
     stroke-width: 1.5px;
     }
+
+.info-box-icon.custom {
+    height: 60px;
+    line-height: 60px;
+}
+
+.info-box.custom {
+    min-height: 60px;
+}
