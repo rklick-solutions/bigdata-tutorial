@@ -3,7 +3,7 @@
 @main(title) {
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div id="spark_overview" class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -35,18 +35,8 @@
                         <i class="fa fa-sticky-note"></i>
                         <h3 class="box-title">Descriptions</h3>
                     </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <div class="callout bg-gray">
-                            <h4>Creating DataFrames</h4>
-                            <p>A DataFrame is a distributed collection of data, which is organized into named columns. Conceptually, it is equivalent to relational tables with good optimization techniques. A DataFrame can be constructed from an array of different sources such as Hive tables, Structured Data files, external databases, or existing RDDs. Here we are using JSON document named cars.json with the following content and generate a table based on the schema in the JSON document.</p>
-                        </div>
-                        <code lang="scala">
-                            def overview = Action {
-                                Ok(views.html.spark_overview("Your new application is ready."))
-                            }
-                        </code>
-                        <hr>
-                        <img class="img-responsive" src='@routes.Assets.versioned("images/creatingdataframe.png")'>
+                    <div id="description" class="box-body">
+                        <!--Append dynamic Content-->
                     </div><!-- /.box-body -->
                     <div class="box-footer">
                         <a class="btn btn-info pull-right" href="#">
@@ -60,5 +50,12 @@
 
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<script>
+    $(function(){
+      populateDescription()
+    });
+
+</script>
 
 }

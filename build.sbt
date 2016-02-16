@@ -14,6 +14,7 @@ scalaVersion := Version.scala
 libraryDependencies ++= Seq(jdbc, cache, ws, specs2 % Test)
 
 libraryDependencies ++= Seq(
+  "org.julienrf" % "play-jsmessages_2.11" % "2.0.0",
   "org.webjars" %% "webjars-play" % "2.4.0-1",
   "org.webjars.bower" % "adminlte" % "2.3.2"
 )
