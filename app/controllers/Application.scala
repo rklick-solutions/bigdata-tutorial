@@ -7,7 +7,7 @@ import service.UploadService
 class Application @Inject()(uploadService: UploadService) extends Controller {
 
   def index = Action { implicit request =>
-    Ok(views.html.index("Playing MultipartFormData"))
+    Ok(views.html.index("Big Data Tutorial"))
   }
 
   /**
@@ -15,7 +15,7 @@ class Application @Inject()(uploadService: UploadService) extends Controller {
     * @return
     */
   def uploadForm = Action { implicit request =>
-    Ok(views.html.upload("Playing MultipartFormData"))
+    Ok(views.html.upload("Big Data Tutorial"))
   }
 
   /**
@@ -23,9 +23,7 @@ class Application @Inject()(uploadService: UploadService) extends Controller {
     * @return
     */
   def upload = Action(parse.multipartFormData) { implicit request =>
-    println(s"Calling Upload:::::::::")
     val result = uploadService.uploadFile(request)
-    println(s"result Upload:::::::::${result}")
     Ok(result)
   }
 
