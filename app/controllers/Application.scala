@@ -7,7 +7,7 @@ import service.UploadService
 class Application @Inject()(uploadService: UploadService) extends Controller {
 
   def index = Action { implicit request =>
-    Ok(views.html.index("Big Data Tutorial"))
+    Redirect(routes.SparkOverview.overview)
   }
 
   /**
