@@ -1,29 +1,29 @@
-@(title: String)(content: Html)
+@(page: String)(content: Html)
 
 <!DOCTYPE html>
 
 <html lang="en">
 
     <head>
-        <title>@title</title>
-        @links("home")
+        <title>Welcome to @page</title>
+        @links(page)
     </head>
 
     <body class="hold-transition skin-purple-light sidebar-mini">
         <div class="wrapper">
 
-            @header("home")
+            @header(page)
 
-            @aside("home")
+            @left_aside(page)
 
             @content
 
-            @footer("home")
+            @footer(page)
 
-            @right_aside("home")
+            @right_aside(page)
 
         </div>
 
-        @scripts("home")
+        @scripts(page)
     </body>
 </html>

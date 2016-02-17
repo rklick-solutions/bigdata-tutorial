@@ -1,4 +1,9 @@
 @(page: String)
+
+@isActive(name: String) = {
+    @if(page.contains(name)) { active } else { }
+}
+
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -7,7 +12,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">Tutorials</li>
-            <li class="active">
+            <li class='@isActive("Spark")'>
                 <a href="@routes.SparkOverview.overview">
                     <i class="fa fa-star-o"></i> <span>Apache Spark</span>
                     <strong class="label pull-right bg-gray">1.6.0</strong>
@@ -18,17 +23,17 @@
                     <i class="fa fa-th"></i> <span>File Upload</span>
                 </a>
             </li>-->
-            <li>
+            <li class='@isActive("Architecture")'>
                 <a href="@routes.ArchitectureOverview.overview">
                     <i class="fa fa-cubes"></i> <span>Architecture</span>
                 </a>
             </li>
-            <li>
+            <li class='@isActive("Analytics")'>
                 <a href="#">
                     <i class="fa fa-cogs"></i> <span>Analytics</span>
                 </a>
             </li>
-            <li>
+            <li class='@isActive("About")'>
                 <a href="#">
                     <i class="fa fa-eye"></i> <span>About</span>
                 </a>
