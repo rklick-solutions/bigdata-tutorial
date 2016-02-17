@@ -16,7 +16,7 @@ class SparkInAction extends Controller {
   def inAction = Action {
     val rows = df.collect().take(10)
     val dataMap = rows.map { row => columns.map { col => (col -> row.getAs[Any](col)) }.toMap }
-    Ok(views.html.spark_in_action("home", columns, dataMap))
+    Ok(views.html.tutorials.bigdata.spark_in_action("Spark In Action", columns, dataMap))
   }
 
 }

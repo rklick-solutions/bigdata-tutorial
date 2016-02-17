@@ -8,7 +8,7 @@ import play.api.mvc.{Action, Controller}
 class ArchitectureOverview extends Controller {
 
   def overview = Action {
-    Ok(views.html.arch_overview("Your new application is ready."))
+    Ok(views.html.tutorials.architecture.arch_overview("Architecture Design"))
   }
 
 }

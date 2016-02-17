@@ -15,7 +15,7 @@ class Application @Inject()(uploadService: UploadService) extends Controller {
     * @return
     */
   def uploadForm = Action { implicit request =>
-    Ok(views.html.upload("Big Data Tutorial"))
+    Ok(views.html.tutorials.bigdata.upload("Big Data Tutorial"))
   }
 
   /**

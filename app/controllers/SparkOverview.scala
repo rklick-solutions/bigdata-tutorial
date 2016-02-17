@@ -8,7 +8,7 @@ import play.api.mvc.{Action, Controller}
 class SparkOverview extends Controller {
 
   def overview = Action {
-    Ok(views.html.spark_overview("Your new application is ready."))
+    Ok(views.html.tutorials.bigdata.spark_overview("Spark Overview"))
   }
 
 }
