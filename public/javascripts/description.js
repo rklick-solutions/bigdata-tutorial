@@ -10,10 +10,6 @@ var populateDescription = function() {
 	} else {
 		name = "?"
 	}*/
-
-    $("#description").html(Messages('en', 'spark.core.feature'));
-	//$("#hindiPanelContent").html(Medescriptionssages('hi', 'welcome', name));
-	//$("#frenchPanelContent").html(Messages('fr', 'welcome', name));
-	//$("#latinPanelContent").html(Messages('la', 'welcome', name));
+    $("#description").html(Messages('en', 'spark.sql.initializing'));
 }
 

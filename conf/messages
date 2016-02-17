@@ -4,11 +4,55 @@
 welcome=Hello {0}!
 
 # Spark
-spark.dataframes=<div class='callout bg-gray'><h4>Creating DataFrames</h4><p>A DataFrame is a distributed collection of data, which is organized into named columns. Conceptually, it is equivalent to relational tables with good optimization techniques. A DataFrame can be constructed from an array of different sources such as Hive tables, Structured Data files, external databases, or existing RDDs. Here we are using JSON document named cars.json with the following content and generate a table based on the schema in the JSON document.</p></div><code lang='scala'>def overview = Action {Ok(views.html.spark_overview("Your new application is ready."))}</code><hr><img class="img-responsive" src='/assets/images/creatingdataframe.png' />
 spark.datasets=<div class='callout bg-gray'><h4>Creating DataFrames</h4><p>A DataFrame is a distributed collection of data, which is organized into named columns. Conceptually, it is equivalent to relational tables with good optimization techniques. A DataFrame can be constructed from an array of different sources such as Hive tables, Structured Data files, external databases, or existing RDDs. Here we are using JSON document named cars.json with the following content and generate a table based on the schema in the JSON document.</p></div><code lang='scala'>def overview = Action {Ok(views.html.spark_overview("Your new application is ready."))}</code><hr><img class="img-responsive" src='/assets/images/creatingdataframe.png' />
 
 # Spark Core
 spark.core.intro=<div class='callout bg-gray'><h4>Introduction Apache Spark</h4><p>Apache Spark is a powerful open source processing engine built around speed, ease of use, and sophisticated analytics.It is a cluster computing framework originally developed in the AMPLab at University of California, Berkeley but was later donated to the Apache Software Foundation where it remains today. Apache Spark is a lightning-fast cluster computing technology, designed for fast computation. It is a framework for performing general data analytics on distributed computing cluster like Hadoop. The main feature of Spark is its in-memory cluster computing that increases the processing speed of an application. It provides in memory computations for increase speed and data process over mapreduce.It runs on top of existing hadoop cluster and access hadoop data store (HDFS), can also process structured data in Hive and Streaming data from HDFS,Flume,Kafka,Twitter.</p></div>
 spark.core.feature=<div class='callout bg-gray'><h4>Featutres of Spark</h4><p>Some of Spark's features which are really highlighting it in the Big Data world.<br /><b>1.Speed</b></p><p>Spark can be 100x faster than Hadoop for large scale data processing by exploiting in memory computing and other optimizations. Spark makes it possible by reducing number of read/write to disc. It stores this intermediate processing data in-memory. It uses the concept of an Resilient Distributed Dataset (RDD), which allows it to transparently store data on memory and persist it to disc only it’s needed.</p><p><b>2.Ease of Use</b></p><p>Spark has easy-to-use APIs for operating on large datasets. This includes a collection of over 100 operators for transforming data and familiar data frame APIs for manipulating semi-structured data. Spark lets you quickly write applications in Java, Scala, or Python. This helps developers to create and run their applications on their familiar programming languages and easy to build parallel apps.</p></div>
+spark.core.initialize=<div class='callout bg-gray'><h4>Initializing</h4><p>Spark program must do is to create a SparkContext object, which tells Spark how to access a cluster. To create a SparkContext you first need to build a SparkConf object that contains information about your application. The appName parameter is a name for your application to show on the cluster UI. master is a Spark, Mesos or YARN cluster URL, or a special “local” string to run in local mode.</p></div><code lang='scala'>val conf = new SparkConf().setAppName("appName").setMaster("master")</br>new SparkContext(conf)</code>
 
+# Spark Core RDD
+spark.core.rdd.create=<div class='callout bg-gray'><h4>Create RDD</h4><p>There are two ways to create RDDs − parallelizing an existing collection in your driver program, or referencing a dataset in an external storage system</p><p><b>Using parallelize() Method</b></p><p><code lang='scala'>val lines = sc.parallelize(List("pandas", "i like pandas"))</code></p></div>
+spark.core.rdd.operations.transformation=<div class='callout bg-gray'><h4>Transformations</h4><p>Transformations are operations on RDDs that return a new RDD. Some basic common transformations fuctions supported by Spark.</p><p><b>map()</b></p></div><code lang='scala'>val input1 = sc.parallelize(List(1, 2, 3, 4,5,6,7,8,9))<br/>val result1 = input.map(x => x + 1) <br/> println("Mapping:" + result1.collect().mkString(","))</code><br><a href='https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#1transformations'>More...</a>
+spark.core.rdd.operations.actions=<div class='callout bg-gray'><h4>Actions</h4><p>Actions are operations that return a result to the driver program or write it to storage Some basic common actions fuctions supported by Spark.</p></div><p><b>reduce()</b></p><code lang='scala'>val input = sc.parallelize(List(3, 2, 4, 6)) <br> val inputs= sc.parallelize(List(2, 4, 2, 3)) <br> val rUnion = input.union(inputs) <br> val resultReduce = rUnion.reduce((x, y) => x + y) <br>println("reduce:" + resultReduce + " ")</code><br><a href='https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-Core#2actions'>More...</a>
 
+#Spark Sql
+spark.sql.initializing=<div class='callout bg-gray'><h4>Initializing</h4><p>Spark SQL is a component on top of Spark Core that introduces a new data abstraction called SchemaRDD, which provides support for structured and semi-structured data.Spark SQL is to execute SQL queries written using either a basic SQL syntax or HiveQL. Spark SQL can also be used to read data from an existing Hive installation.It provides a programming abstraction called DataFrame and can act as distributed SQL query engine.</p></div><code lang='scala'>val sc = SparkCommon.sparkContext <br> val sqlContext = new org.apache.spark.sql.SQLContext(sc)</code>
+spark.sql.basic=<div class='callout bg-gray'><h4>Basic Query</h4><p>Spark SQL is a component on top of Spark Core that introduces a new data abstraction called SchemaRDD, which provides support for structured and semi-structured data.Spark SQL is to execute SQL queries written using either a basic SQL syntax or HiveQL. Spark SQL can also be used to read data from an existing Hive installation.It provides a programming abstraction called DataFrame and can act as distributed SQL query engine.</p></div><code lang='scala'>val sc = SparkCommon.sparkContext <br> val sqlContext = new org.apache.spark.sql.SQLContext(sc)</code>
+
+#Spark Dataframes
+spark.dataframe.create=<div class='callout bg-gray'><h4>Initializing</h4><p>A DataFrame is a distributed collection of data, which is organized into named columns. Conceptually, it is equivalent to relational tables with good optimization techniques. A DataFrame can be constructed from an array of different sources such as Hive tables, Structured Data files, external databases, or existing RDDs. Here we are using JSON document named cars.json with the following content and generate a table based on the schema in the JSON document.</p></div><code lang='scala'>val df = sqlContext.read.json("src/main/resources/cars.json")</code>
+
+spark.dataframes.api.action=
+spark.dataframes.api.basic=
+spark.dataframes.api.operations=
+
+spark.dataframes.interoperating.infering=
+spark.dataframes.interoperating.specifying=
+
+spark.dataframes.sources.json=
+spark.dataframes.sources.txt=
+spark.dataframes.sources.csv=
+
+#Spark Datasets
+spark.datasets.create=<div class='callout bg-gray'><h4>Create</h4><p>Dataset is a new experimental interface that tries to provide the benefits of RDDs (strong typing, ability to use powerful lambda functions) with the benefits of Spark SQL’s optimized execution engine. Dataset can be constructed from JVM objects and then manipulated using functional transformations (map, flatMap, filter, etc.).</p></div><code lang='scala'>val lines = sqlContext.read.text("src/main/resources/test_file.txt").as[String] <br> val words = lines<br>.flatMap(_.split(" "))<br>.filter(_ != "")<br>.groupBy(_.toLowerCase)<br>.count()<br>.show()</code>
+spark.datasets.basic=
+
+#Spark MLib
+spark.mlib.overview.estimators=<div class='callout bg-gray'><h4>Estimators</h4><p>An Estimator abstracts the concept of a learning algorithm or any algorithm that fits or trains on data. Technically, an Estimator implements a method fit(), which accepts a DataFrame and produces a Model, which is a Transformer. For example, a learning algorithm such as LogisticRegression is an Estimator, and calling fit() trains a LogisticRegressionModel, which is a Model and hence a Transformer.</p></div><br><a href='http://spark.apache.org/docs/latest/ml-guide.html#estimators'>More...</a>
+spark.mlib.overview.transformers=<div class='callout bg-gray'><h4>Transformers</h4><p>A Transformer is an abstraction that includes feature transformers and learned models. Technically, a Transformer implements a method transform(), which converts one DataFrame into another, generally by appending one or more columns</p></div><br><a href='http://spark.apache.org/docs/latest/ml-guide.html#transformers'>More...</a>
+spark.mlib.overview.pipelines=<div class='callout bg-gray'/><h4>Pipelines</h4><p>Transformer.transform()s and Estimator.fit()s are both stateless. In the future, stateful algorithms may be supported via alternative concepts.</p></div><br><a href='http://spark.apache.org/docs/latest/ml-guide.html#properties-of-pipeline-components'>More...</a>
+
+spark.mlib.algorithm.regression=
+spark.mlib.algorithm.clustering=
+spark.mlib.algorithm.classification=
+
+#Spark GraphX
+spark.graphx.core=
+spark.graphx.algorithm.pagerank=
+spark.graphx.algorithm.triangle=
+spark.graphx.algorithm.connected=
+spark.graphx.algorithm.strongly=
+
+#SparkR
+spark.sparkr=
