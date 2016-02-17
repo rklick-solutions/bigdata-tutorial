@@ -11,37 +11,43 @@
              "children": [
                  {
                      "name": "Introduction",
-                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "msg": "spark.core.introduction"
                  },
                  {
                      "name": "Feature",
-                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                      "msg": "spark.core.feature"
                  },
                  {
                      "name": "Initializing",
-                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "msg": "spark.core.initialize"
                  },
                  {
                      "name": "RDD's",
                      "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
                      "children": [
                          {
-                         "name": "Create",
-                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                             "name": "Create",
+                             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                             "msg": "spark.core.rdd.create"
                          },
                          {
-                         "name": "Operations",
-                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                          "children": [
-                         {
-                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                         "name": "Action"
-                         },
-                         {
-                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                         "name": "Transformation"
-                         }
-                            ]
+                             "name": "Operations",
+                             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                              "children": [
+                                 {
+                                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                                     "name": "Action",
+                                     "msg": "spark.core.rdd.operations.actions"
+                                 },
+                                 {
+                                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                                     "name": "Transformation",
+                                     "msg": "spark.core.rdd.operations.transformation"
+                                 }
+                              ]
                          }
                      ]
                  }
@@ -69,7 +75,8 @@
              "children": [
                   {
                       "name": "Create",
-                       "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                       "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                       "msg": "spark.dataframes.create"
                   },
                   {
                       "name": "API",
@@ -77,15 +84,18 @@
                       "children": [
                           {
                             "name": "Action",
-                            "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                            "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                            "msg": "spark.dataframes.api.action"
                           },
                           {
                             "name": "Basic",
-                            "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                            "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                            "msg": "spark.dataframes.api.basic"
                           },
                           {
                            "name": "Operations",
-                           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                           "msg": "spark.dataframes.api.operations"
                            },
                       ]
                   },
@@ -95,11 +105,13 @@
                     "children": [
                       {
                        "name": "Inferring Schema",
-                       "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                       "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                       "msg": "spark.dataframes.interoperating.infering"
                       },
                       {
                        "name": "Specifying Schema",
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                        "msg": "spark.dataframes.interoperating.specifying"
                       }
                     ]
                 },
@@ -109,15 +121,18 @@
                     "children": [
                       {
                        "name": "JSON",
-                       "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                       "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                       "msg": "spark.dataframes.sources.json"
                       },
                       {
                        "name": "CSV",
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                        "msg": "spark.dataframes.sources.csv"
                       },
                       {
                          "name": "TXT",
-                          "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                          "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                          "msg": "spark.dataframes.sources.json"
                       }
                     ]
                 }
@@ -129,11 +144,13 @@
              "children": [
                 {
                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                    "name": "Create"
+                    "name": "Create",
+                    "msg": "spark.datasets.create"
                 },
                 {
                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                    "name": "Basic"
+                    "name": "Basic",
+                    "msg": "spark.datasets.basic"
                 }
 
              ]
@@ -163,15 +180,18 @@
                    "children": [
                         {
                              "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                             "name": "Estimators"
+                             "name": "Estimators",
+                             "msg": "spark.mlib.overview.estimators"
                          },
                          {
                              "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                             "name": "Transformers"
+                             "name": "Transformers",
+                             "msg": "spark.mlib.overview.transformers"
                          },
                          {
                              "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                             "name": "Pipelines"
+                             "name": "Pipelines",
+                             "msg": "spark.mlib.overview.pipelines"
                          }
                    ]
               },
@@ -181,15 +201,18 @@
                     "children": [
                       {
                            "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                           "name": "Classification"
+                           "name": "Classification",
+                           "msg": "spark.mlib.algorithm.classification"
                        },
                        {
                            "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                           "name": "Clustering"
+                           "name": "Clustering",
+                           "msg": "spark.mlib.algorithm.clustering"
                        },
                        {
                            "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                           "name": "Regression"
+                           "name": "Regression",
+                           "msg": "spark.mlib.algorithm.regression"
                        }
                     ]
               }
@@ -201,7 +224,8 @@
            "children": [
              {
                "name": "Core",
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+               "msg": "spark.graphx.core"
              },
              {
                 "name": "Algorithms",
@@ -209,19 +233,23 @@
                 "children": [
                     {
                        "name": "PageRank",
-                       "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                       "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                       "msg": "spark.graphx.algorithm.pagerank"
                     },
                     {
                         "name": "Triangle",
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                        "msg": "spark.graphx.algorithm.triangle"
                     },
                     {
                         "name": "Connected Component",
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                        "msg": "spark.graphx.algorithm.connected"
                     },
                     {
                         "name": "Strongly Connected Component",
-                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                        "msg": "spark.graphx.algorithm.strongly"
                     }
                 ]
               },
@@ -229,7 +257,8 @@
          },
          {
            "name": "SparkR",
-           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+           "msg": "spark.sparkr"
 
          }
      ]

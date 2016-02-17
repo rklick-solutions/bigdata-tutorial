@@ -4,7 +4,7 @@ if (window.console) {
 }
 
 var populateDescription = function(key) {
-     if(key.isEmpty){
+     if(key == undefined || key.isEmpty){
        key = 'spark.core.feature';
      }
     $("#description").html(Messages('en', key));
