@@ -6,9 +6,12 @@
         <i class="fa fa-bar-chart"></i>
         <h3 class="box-title">Bar Chart</h3>
     </div>
-    <div class="box-body">
-        <div class="chart">
+    <div class="box-body text-center">
+        <div id="barChartDiv" class="chart">
             <canvas id="barChart" style="height:230px"></canvas>
+        </div>
+        <div id="barChartLoadingDiv" class="chart" hidden >
+            <img src='@routes.Assets.versioned("images/preloader.gif")' />
         </div>
     </div><!-- /.box-body -->
 </div><!-- /.box -->
