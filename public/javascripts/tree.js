@@ -125,6 +125,11 @@
                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
                     "children": [
                       {
+                        "name": "Overview",
+                        "icon": "",
+                        "msg": "spark.dataframes.sources.overview"
+                      },
+                      {
                        "name": "JSON",
                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
                        "msg": "spark.dataframes.sources.json"
