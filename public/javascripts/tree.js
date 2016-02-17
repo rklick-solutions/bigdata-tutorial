@@ -3,25 +3,25 @@
         var json =
   {
      "name": "Spark 1.6",
-     "icon": "http://inquidia.com/sites/default/files/spark.png",
+     "icon": "/assets/images/spark-logo-hd.png",
      "children": [
          {
              "name": "Core",
-             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+             "icon": "",
              "children": [
                  {
                      "name": "Introduction",
-                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "icon": "",
                      "msg": "spark.core.introduction"
                  },
                  {
                      "name": "Feature",
-                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "icon": "",
                       "msg": "spark.core.feature"
                  },
                  {
                      "name": "Initializing",
-                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "icon": "",
                      "msg": "spark.core.initialize"
                  },
                  {
@@ -30,12 +30,12 @@
                      "children": [
                          {
                              "name": "Create",
-                             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                             "icon": "",
                              "msg": "spark.core.rdd.create"
                          },
                          {
                              "name": "Operations",
-                             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                             "icon": "",
                               "children": [
                                  {
                                      "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
@@ -71,7 +71,7 @@
          },
          {
              "name": "Dataframes",
-             "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+             "icon": "/assets/images/dataframe.png",
              "children": [
                   {
                       "name": "Create",
@@ -157,7 +157,7 @@
          },
          {
                "name": "Streaming",
-               "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+               "icon": "/assets/images/streaming.png",
                "children": [
                  {
                  "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
@@ -172,7 +172,7 @@
          },
          {
            "name": "MLib",
-           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+           "icon": "/assets/images/Mlib.png",
            "children": [
               {
                    "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
@@ -220,7 +220,7 @@
          },
          {
            "name": "GraphX",
-           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+           "icon": "/assets/images/Graphx.png",
            "children": [
              {
                "name": "Core",
@@ -257,7 +257,7 @@
          },
          {
            "name": "SparkR",
-           "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+           "icon": "/assets/images/sparkr.png",
            "msg": "spark.sparkr"
 
          }
@@ -313,8 +313,9 @@ function update(source)
         .attr("transform", function(d){ return "translate(" + source.y0 + "," + source.x0 + ")"; })
         .on("click", click);
 
-    nodeEnter.append("image")
-      .attr("xlink:href", function(d) { return d.icon; })
+    nodeEnter.append("img")
+      .attr("class", "img-responsive")
+      .attr("xlink:src", function(d) { return d.icon; })
       .attr("x", "-12px")
       .attr("y", "-12px")
       .attr("width", "24px")
