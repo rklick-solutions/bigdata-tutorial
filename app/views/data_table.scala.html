@@ -1,11 +1,11 @@
 @(cols: Array[String], dataMap: Array[Map[String, Any]])
 
 <div class="box">
-    <div class="box-header">
+    <div class="box-header bg-gray">
         <i class="fa fa-store"></i>
         <h3 class="box-title">Data</h3>
     </div><!-- /.box-header -->
-    <div class="box-body no-padding">
+    <div class="box-body bg-gray disabled no-padding">
         <table class="table table-condensed">
             <tr>
                 @cols.map { col =>
