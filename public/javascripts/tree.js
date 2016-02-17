@@ -104,9 +104,14 @@
                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
                     "children": [
                       {
-                       "name": "Inferring Schema",
-                       "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                       "msg": "spark.dataframes.interoperating.infering"
+                         "name": "Overview",
+                         "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                         "msg": "spark.dataframes.interoperating.overview"
+                      },
+                      {
+                        "name": "Inferring Schema",
+                        "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                        "msg": "spark.dataframes.interoperating.infering"
                       },
                       {
                        "name": "Specifying Schema",
