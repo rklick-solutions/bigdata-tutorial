@@ -3,13 +3,10 @@ if (window.console) {
   console.log(Messages('en', 'spark.core.feature'));
 }
 
-var populateDescription = function() {
-	/*var name = $("#name").val();
-	if(name.length > 0) {
-		console.log(Messages('en', "hello", "Anand"));
-	} else {
-		name = "?"
-	}*/
-    $("#description").html(Messages('en', 'spark.sql.initializing'));
+var populateDescription = function(key) {
+     if(key.isEmpty){
+       key = 'spark.core.feature';
+     }
+    $("#description").html(Messages('en', key));
 }
 

@@ -53,11 +53,13 @@
              "children": [
                  {
                      "name": "Initializing",
-                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "msg": "spark.sql.initializing"
                  },
                  {
                      "name": "Basic Query",
-                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png"
+                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "msg": "spark.sql.basic"
                  }
              ]
          },
@@ -389,6 +391,9 @@ function click(d)
         d.children = null;
     }
     else{
+        if(d.msg != undefined){
+            populateDescription(d.msg);
+        }
         d.children = d._children;
         d._children = null;
     }
