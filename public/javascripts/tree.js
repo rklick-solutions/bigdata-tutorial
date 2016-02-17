@@ -160,14 +160,25 @@
                "icon": "/assets/images/streaming.png",
                "children": [
                  {
-                 "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                 "name": "Child 1"},
+                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "name": "Overview",
+                     "msg": "spark.streaming.overview"
+                 },
                  {
-                 "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                 "name": "Child 2"},
+                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "name": "Linking",
+                     "msg": "spark.streaming.linking"
+                 },
                  {
-                 "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-                 "name": "Child 3"}
+                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "name": "Initializing",
+                     "msg": "spark.streaming.initializing"
+                 },
+                 {
+                     "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
+                     "name": "Discretized",
+                     "msg": "spark.streaming.discretized"
+                 }
                ]
          },
          {
