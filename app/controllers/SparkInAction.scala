@@ -5,6 +5,7 @@ import org.apache.spark.sql.{DataFrame, Row}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 import utils.{PieChart, SparkCommons}
+import org.apache.spark.sql.functions._
 
 /**
   * Created by anand on 2/16/16.
@@ -13,14 +14,13 @@ class SparkInAction extends Controller {
 
   implicit val pieChartFormat = Json.format[PieChart]
 
-  val COLOR = Map("Yatra" -> "#f56954", "MakeMyTrip" -> "#00a65a", "GOIBIBO" -> "#f39c12", "AXIS" -> "#00c0ef",
-    "HDFC" -> "#3c8dbc", "SBI" -> "#d2d6de", "DEUT" -> "#DC143C", "HSBC" -> "#FF1493", "KOT" -> "#FF4500",
+  val COLOR = Map("Asia" -> "#f56954", "Europe" -> "#00a65a", "North America" -> "#f39c12", "Africa" -> "#00c0ef",
+    "Oceania" -> "#3c8dbc", "Antarctica" -> "#d2d6de", "South America" -> "#DC143C", "HSBC" -> "#FF1493", "KOT" -> "#FF4500",
     "INDUSIND" -> "#BDB76B")
 
-  val dataFile = "resources/flights.json"
-  lazy val df: DataFrame = SparkCommons.sqlContext.read.json(dataFile).withColumnRenamed("offer_valid_from", "FROM")
-    .withColumnRenamed("offer_valid_upto", "UPTO")
-    .select("COMPANY", "BANK_CODE", "CARD_TYPE", "DEAL_TYPE", "DIS_AMT", "MIN_PUR_AMT", "FROM", "UPTO")
+  val dataFile = "resources/countries-info.json"
+  lazy val df: DataFrame = SparkCommons.sqlContext.read.json(dataFile)
+    .select("countryCode", "countryName", "currencyCode", "population", "capital", "continentName", "languages")
   lazy val columns = df.columns
 
   def inAction = Action {
@@ -47,7 +47,7 @@ class SparkInAction extends Controller {
   }
 
   def applyFilter = Action {
-    val filteredDF = df.filter(df("FROM").notEqual("0"))
+    val filteredDF = df.filter(df("population").>(100000000))
     val (company, bank) = getPieChartData(filteredDF)
     val fCols = filteredDF.columns
     val rows = filteredDF.take(20)
@@ -59,7 +59,7 @@ class SparkInAction extends Controller {
   }
 
   def applySort = Action {
-    val dataFrame = df.sort("COMPANY", "BANK_CODE", "CARD_TYPE")
+    val dataFrame = df.sort("countryName")
     val (company, bank) = getPieChartData(dataFrame)
     val fCols = dataFrame.columns
     val rows = dataFrame.take(20)
@@ -83,7 +83,6 @@ class SparkInAction extends Controller {
   }
 
   def applyAdd = Action {
-    import org.apache.spark.sql.functions._
     val dataFrame = df.withColumn("PUBLISHED", current_date())
     val (company, bank) = getPieChartData(dataFrame)
     val fCols = dataFrame.columns
@@ -138,10 +137,10 @@ class SparkInAction extends Controller {
   }
 
   private def getPieChartData(dataFrame: DataFrame): (Array[PieChart], Array[PieChart]) = {
-    val company = dataFrame.groupBy("COMPANY").count().collect().map { case Row(name: String, count: Long) =>
+    val company = dataFrame.groupBy("continentName").count().collect().map { case Row(name: String, count: Long) =>
       PieChart(count, color(name), color(name), name)
-    }
-    val bank = dataFrame.groupBy("BANK_CODE").count().collect().map { case Row(name: String, count: Long) =>
+    }//.sortBy(-_.value).take(10)
+    val bank = dataFrame.groupBy("countryCode").count().collect().map { case Row(name: String, count: Long) =>
       PieChart(count, color(name), color(name), name)
     }
     (company, bank)

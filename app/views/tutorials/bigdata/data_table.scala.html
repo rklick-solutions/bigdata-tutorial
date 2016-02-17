@@ -10,7 +10,7 @@
             <table class="table table-condensed">
                 <tr>
                     @cols.map { col =>
-                    <th>@col</th>
+                    <th>@col.toUpperCase</th>
                     }
                 </tr>
                 @dataMap.map { row =>
