@@ -239,9 +239,9 @@
            "icon": "/assets/images/Graphx.png",
            "children": [
              {
-               "name": "Core",
+               "name": "Overview",
                "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "msg": "spark.graphx.core"
+               "msg": "spark.graphx.overview"
              },
              {
                 "name": "Algorithms",

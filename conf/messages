@@ -55,7 +55,7 @@ spark.mlib.algorithm.clustering=
 spark.mlib.algorithm.classification=
 
 #Spark GraphX
-spark.graphx.core=
+spark.graphx.overview=<div class='callout bg-gray'><h4>Overview</h4><p>GraphX is a new component in Spark for graphs and graph-parallel computation.</p></div><br><a href='http://spark.apache.org/docs/1.6.0/graphx-programming-guide.html#overview'>More...</a>
 spark.graphx.algorithm.pagerank=
 spark.graphx.algorithm.triangle=
 spark.graphx.algorithm.connected=
