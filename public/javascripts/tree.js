@@ -280,7 +280,7 @@
      ]
  };
 
-var width = 700;
+var width = 900;
 var height = 650;
 var maxLabel = 150;
 var duration = 500;
