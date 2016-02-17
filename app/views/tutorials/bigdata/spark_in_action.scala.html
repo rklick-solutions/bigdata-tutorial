@@ -1,6 +1,6 @@
-@(title: String, cols: Array[String], dataMap: Array[Map[String, Any]])
+@(page: String, total: Long, current: Long, showing: Long, cols: Array[String], dataMap: Array[Map[String, Any]])
 
-@main(title) {
+@main(page) {
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -19,33 +19,7 @@
             <!-- Left col -->
             <div class="col-md-6 col-lg-8">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="info-box custom">
-                            <span class="info-box-icon custom bg-aqua"><i class="fa fa-archive"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Total</span>
-                                <span class="info-box-number">1,410</span>
-                            </div><!-- /.info-box-content -->
-                        </div><!-- /.info-box -->
-                    </div><!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="info-box custom">
-                            <span class="info-box-icon custom bg-green"><i class="fa fa-flag-o"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Current</span>
-                                <span class="info-box-number">410</span>
-                            </div><!-- /.info-box-content -->
-                        </div><!-- /.info-box -->
-                    </div><!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="info-box custom">
-                            <span class="info-box-icon custom bg-yellow"><i class="fa fa-tripadvisor"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Showing</span>
-                                <span class="info-box-number">10</span>
-                            </div><!-- /.info-box-content -->
-                        </div><!-- /.info-box -->
-                    </div><!-- /.col -->
+                    @data_count(total, current, showing)
                 </div><!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -54,16 +28,23 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        @fun_desc("home")
+                        @pie_chart(page)
                     </div>
                     <div class="col-lg-6">
-                        @bar_chart(title)
+                        @bar_chart(page)
                     </div>
                 </div>
             </div><!-- /.col -->
 
             <div class="col-md-6 col-lg-4">
-                @spark_functions(title)
+                <div class="row">
+                    <div class="col-lg-12">
+                        @spark_functions(page)
+                    </div>
+                    <div class="col-lg-12">
+                        @fun_desc(page)
+                    </div>
+                </div>
             </div><!-- /.col -->
         </div> <!-- /.row -->
         <!-- END ALERTS AND CALLOUTS -->
