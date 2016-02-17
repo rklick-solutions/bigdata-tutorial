@@ -23,8 +23,20 @@ spark.sql.basic=<div class='callout bg-gray'><h4>Basic Query</h4><p>Spark SQL is
 #Spark Dataframes
 spark.dataframes.create=<div class='callout bg-gray'><h4>Dataframe</h4><p>A DataFrame is a distributed collection of data, which is organized into named columns. Conceptually, it is equivalent to relational tables with good optimization techniques. A DataFrame can be constructed from an array of different sources such as Hive tables, Structured Data files, external databases, or existing RDDs. Here we are using JSON document named cars.json with the following content and generate a table based on the schema in the JSON document.</p></div><code lang='scala'>val df = sqlContext.read.json("src/main/resources/cars.json")</code>
 
-spark.dataframes.api.action=
-spark.dataframes.api.basic=
+spark.dataframes.api.action=<div class='callout bg-gray'><h4>Dataframe Action</h4><p>Action are operations (such as take, count, first, and so on) that return a value after running a computation on an DataFrame.</p></div>
+
+
+
+spark.dataframes.api.basic=<h4>Dataframe Basic</h4><p><b>printSchema:</b>If you want to see the Structure (Schema) of the DataFrame, then use the following command.<br><code lang='scala'>carDataFrame.printSchema()</code><br><b>toDF() :</b>Returns a new DataFrame with columns renamed. It can be quite convenient in conversion from a RDD of tuples into a DataFrame with meaningful names.<br><code lang='scala'>val car = sc.textFile("src/main/resources/fruits.txt").map(_.split(",")).map(f => Fruit(f(0).trim.toInt, f(1), f(2).trim.toInt)).toDF().show()</code><br><b>dtypes()() :</b>Returns all column names and their data types as an array.<br><code lang='scala'>carDataFrame.dtypes.foreach(println)</code ><br><b>columns () :</b>Returns all column names as an array.<br><code lang='scala'>carDataFrame.columns.foreach(println)</code ><br><b>Cache():</b> Cache() explicitly to store the data into memory. Or data stored in a distributed way in the memory by default.<br><code lang='scala'>val resultCache = carDataFrame.filter(carDataFrame("speed") > 300)resultCache.cache().show()</code><br><a href='https://github.com/rklick-solutions/spark-tutorial/wiki/Spark-SQL#basic-dataframe-functions'>More...</a>
+
+      
+      
+      
+      
+      
+
+
+
 spark.dataframes.api.operations=
 
 spark.dataframes.interoperating.infering=
