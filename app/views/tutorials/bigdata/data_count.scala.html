@@ -1,0 +1,29 @@
+@(total: Long, current: Long, showing: Long)
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="info-box custom">
+        <span class="info-box-icon custom bg-aqua"><i class="fa fa-archive"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Total</span>
+            <span class="info-box-number">@total</span>
+        </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+</div><!-- /.col -->
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="info-box custom">
+        <span class="info-box-icon custom bg-green"><i class="fa fa-flag-o"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Current</span>
+            <span id="currentCount" class="info-box-number">@current</span>
+        </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+</div><!-- /.col -->
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="info-box custom">
+        <span class="info-box-icon custom bg-yellow"><i class="fa fa-tripadvisor"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Showing</span>
+            <span id="showingCount" class="info-box-number">@showing</span>
+        </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+</div><!-- /.col -->

@@ -239,9 +239,9 @@
            "icon": "/assets/images/Graphx.png",
            "children": [
              {
-               "name": "Core",
+               "name": "Overview",
                "icon": "http://cdn.appstorm.net/mac.appstorm.net/files/2012/07/icon4.png",
-               "msg": "spark.graphx.core"
+               "msg": "spark.graphx.overview"
              },
              {
                 "name": "Algorithms",
@@ -280,7 +280,7 @@
      ]
  };
 
-var width = 700;
+var width = 900;
 var height = 650;
 var maxLabel = 150;
 var duration = 500;
