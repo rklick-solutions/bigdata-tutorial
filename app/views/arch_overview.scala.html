@@ -17,32 +17,29 @@
         <!-- Main row -->
         <div class="row">
             <!-- Left col -->
-            <div class="col-md-6 col-lg-8">
+            <div class="col-md-6 col-lg-7">
                 <div class="box box-default">
                     <div class="box-body">
-                        <div id="tree"></div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video loop class="embed-responsive-item" autoplay src='@routes.Assets.versioned("videos/arch_video_1.mp4")'></video>
+                        </div>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->
 
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-5">
                 <div class="box box-default">
-                    <div class="box-header with-border">
-                        <i class="fa fa-sticky-note"></i>
-                        <h3 class="box-title">Descriptions</h3>
-                    </div><!-- /.box-header -->
-                    <div id="description" class="box-body">
-                        <!--Append dynamic Content-->
+                    <div class="box-body">
+                        <img src='@routes.Assets.versioned("images/architecture_2.png")' class="img-responsive" />
                     </div><!-- /.box-body -->
-                    <div class="box-footer">
-                        <a class="btn btn-info pull-right" href="#">
-                            Action <i class="fa fa-arrow-circle-right"></i>
-                        </a>
-                    </div>
+                </div><!-- /.box -->
+                <div class="box box-default">
+                    <div class="box-body">
+                        <img src='@routes.Assets.versioned("images/architecture_1.png")' class="img-responsive" />
+                    </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->
         </div> <!-- /.row -->
-        <!-- END ALERTS AND CALLOUTS -->
 
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
