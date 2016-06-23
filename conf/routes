@@ -7,14 +7,16 @@ GET     /                           controllers.Application.index
 
 GET     /uploadForm                 controllers.Application.uploadForm
 
-POST    /upload                     controllers.Application.upload
+POST  /                             controllers.Application.upload()
+
+POST    /FileUpload                     controllers.Application.upload
 
 GET     /spark/overview             controllers.SparkOverview.overview
 GET     /spark/action               controllers.SparkInAction.inAction
 GET     /spark/action/collect       controllers.SparkInAction.applyCollect
 GET     /spark/action/filter        controllers.SparkInAction.applyFilter
 GET     /spark/action/sort          controllers.SparkInAction.applySort
-GET     /spark/action/limit         controllers.SparkInAction.applyLimit
+GET     /spark/action/limit         controllers.SparkInAction.applyLimit(limit: Int)
 GET     /spark/action/add           controllers.SparkInAction.applyAdd
 GET     /spark/action/drop          controllers.SparkInAction.applyDrop
 GET     /spark/action/duplicate     controllers.SparkInAction.applyReplace

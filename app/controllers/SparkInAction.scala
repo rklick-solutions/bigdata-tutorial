@@ -18,14 +18,32 @@ class SparkInAction extends Controller {
     "Oceania" -> "#3c8dbc", "Antarctica" -> "#d2d6de", "South America" -> "#DC143C", "HSBC" -> "#FF1493", "KOT" -> "#FF4500",
     "INDUSIND" -> "#BDB76B")
 
+  def upload = Action(parse.multipartFormData) { request =>
+    request.body.file("picture").map { picture =>
+      import java.io.File
+      val filename = picture.filename
+      //val contentType = picture.contentType
+      picture.ref.moveTo(new File(s"/tmp/picture/$filename"))
+      Ok("File uploaded")
+    }.getOrElse {
+      Redirect(routes.Application.index).flashing(
+        "error" -> "Missing file")
+    }
+  }
+ val filePath="tmp/picture/$filename"
+  def loadDF(filePath: String): DataFrame = {
+    SparkCommons.sqlContext.read.json(filePath)
+  }
+
   val dataFile = "resources/countries-info.json"
   lazy val df: DataFrame = SparkCommons.sqlContext.read.json(dataFile)
     .select("countryCode", "countryName", "currencyCode", "population", "capital", "continentName", "languages")
   lazy val columns = df.columns
 
   def inAction = Action {
-    val rows = df.take(20)
-    val dataMap = rows.map { row => columns.map { col => (col -> row.getAs[Any](col)) }.toMap }
+    val dfData = loadDF(dataFile)
+    val rows = dfData.take(20)
+    val dataMap = rows.map { row => dfData.columns.map { col => (col -> row.getAs[Any](col)) }.toMap }
     Ok(views.html.tutorials.bigdata.spark_in_action("Spark In Action", df.count, df.count, rows.size, columns, dataMap))
   }
 
@@ -70,8 +88,8 @@ class SparkInAction extends Controller {
     Ok(data)
   }
 
-  def applyLimit = Action {
-    val dataFrame = df.limit(10)
+  def applyLimit(limit: Int) = Action {
+    val dataFrame = df.limit(limit)
     val (company, bank) = getPieChartData(dataFrame)
     val fCols = dataFrame.columns
     val rows = dataFrame.take(20)
