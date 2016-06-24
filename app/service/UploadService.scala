@@ -18,13 +18,13 @@ class UploadService {
     * @return
     */
   def uploadFile(request: Request[MultipartFormData[TemporaryFile]]): String = {
-    log.error("Called uploadFile function" + request)
-    request.body.file("file").map { picture =>
+    println("Called uploadFile function" + request)
+    request.body.file("picture").map { picture =>
       import java.io.File
       val filename = picture.filename
       val contentType = picture.contentType
       log.error(s"File name : $filename, content type : $contentType")
-      picture.ref.moveTo(new File(s"/tmp/$filename"))
+      picture.ref.moveTo(new File(s"/tmp/picture/$filename"))
       "File uploaded"
     }.getOrElse {
       "Missing file"

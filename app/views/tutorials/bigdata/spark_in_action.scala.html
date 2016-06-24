@@ -6,8 +6,14 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <input type="file" name="picture">
-        <input type="submit">
+        @helper.form(action = routes.Application.upload, 'enctype -> "multipart/form-data") {
+
+            <input type="file" name="picture">
+            <p>
+                <input type="submit">
+            </p>
+
+        }
         <h1>
             Explore Spark Visually
             <small>In Action</small>
