@@ -18,19 +18,8 @@ class SparkInAction extends Controller {
     "Oceania" -> "#3c8dbc", "Antarctica" -> "#d2d6de", "South America" -> "#DC143C", "HSBC" -> "#FF1493", "KOT" -> "#FF4500",
     "INDUSIND" -> "#BDB76B")
 
-  def upload = Action(parse.multipartFormData) { request =>
-    request.body.file("picture").map { picture =>
-      import java.io.File
-      val filename = picture.filename
-      //val contentType = picture.contentType
-      picture.ref.moveTo(new File(s"/tmp/picture/$filename"))
-      Ok("File uploaded")
-    }.getOrElse {
-      Redirect(routes.Application.index).flashing(
-        "error" -> "Missing file")
-    }
-  }
- val filePath="tmp/picture/$filename"
+
+ val filePath="tmp/picture/$newFilename"
   def loadDF(filePath: String): DataFrame = {
     SparkCommons.sqlContext.read.json(filePath)
   }
