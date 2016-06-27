@@ -1,7 +1,5 @@
 package controllers
 
-import java.util.UUID
-
 import com.google.inject.Inject
 import play.api.mvc._
 import service.UploadService
@@ -28,7 +26,7 @@ class Application @Inject()(uploadService: UploadService) extends Controller {
 
   def upload = Action(parse.multipartFormData) { implicit request =>
     val result = uploadService.uploadFile(request)
-    Ok(result)
+    Ok(views.html.tutorials.upload.uploadResult("Upload Result", result._2, result._1))
   }
 
   /*def get (id: UUID)*/

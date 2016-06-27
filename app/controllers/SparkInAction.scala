@@ -5,7 +5,6 @@ import org.apache.spark.sql.{DataFrame, Row}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 import utils.{PieChart, SparkCommons}
-import org.apache.spark.sql.functions._
 
 /**
   * Created by anand on 2/16/16.
@@ -18,10 +17,13 @@ class SparkInAction extends Controller {
     "Oceania" -> "#3c8dbc", "Antarctica" -> "#d2d6de", "South America" -> "#DC143C", "HSBC" -> "#FF1493", "KOT" -> "#FF4500",
     "INDUSIND" -> "#BDB76B")
 
+  def getPath(filename: String): String = {
+    s"/home/supriya/r3_upload/picture/$filename"
+  }
 
- val filePath="tmp/picture/$newFilename"
-  def loadDF(filePath: String): DataFrame = {
-    SparkCommons.sqlContext.read.json(filePath)
+  //val path="tmp/picture/$newFilename"
+  def loadDF(path: String): DataFrame = {
+    SparkCommons.sqlContext.read.json(path)
   }
 
   val dataFile = "resources/countries-info.json"
@@ -29,11 +31,23 @@ class SparkInAction extends Controller {
     .select("countryCode", "countryName", "currencyCode", "population", "capital", "continentName", "languages")
   lazy val columns = df.columns
 
-  def inAction = Action {
+  /**
+    *
+    * @param df
+    * @return
+    */
+  def getColumns(df: DataFrame): Array[String] = {
+    df.columns
+  }
+
+  def inAction(filename: String) = Action {
+    val dataFile = getPath(filename)
     val dfData = loadDF(dataFile)
     val rows = dfData.take(20)
+    val columns = getColumns(dfData)
     val dataMap = rows.map { row => dfData.columns.map { col => (col -> row.getAs[Any](col)) }.toMap }
-    Ok(views.html.tutorials.bigdata.spark_in_action("Spark In Action", df.count, df.count, rows.size, columns, dataMap))
+    Ok(views.html.tutorials.bigdata.spark_in_action("Spark In Action", dfData.count,
+      dfData.count, rows.size, columns, dataMap))
   }
 
   def chartReport = Action {
@@ -146,10 +160,10 @@ class SparkInAction extends Controller {
   private def getPieChartData(dataFrame: DataFrame): (Array[PieChart], Array[PieChart]) = {
     val company = dataFrame.groupBy("continentName").count().collect().map { case Row(name: String, count: Long) =>
       PieChart(count, color(name), color(name), name)
-    }//.sortBy(-_.value).take(10)
+    } //.sortBy(-_.value).take(10)
     val bank = dataFrame.groupBy("countryCode").count().collect().map { case Row(name: String, count: Long) =>
-      PieChart(count, color(name), color(name), name)
-    }
+        PieChart(count, color(name), color(name), name)
+      }
     (company, bank)
   }
 

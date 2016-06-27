@@ -30,6 +30,6 @@ class UploadFile@Inject()(uploadService: UploadService) extends Controller {
 
   def upload = Action(parse.multipartFormData) { implicit request =>
     val result = uploadService.uploadFile(request)
-    Ok(result)
+    Ok(views.html.tutorials.upload.uploadResult("Upload Result", result._2, result._1))
   }
 }

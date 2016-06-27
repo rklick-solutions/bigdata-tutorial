@@ -1,0 +1,50 @@
+@(title: String, filename: String, message: String)
+
+@main(title) {
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            File Upload
+            <small>Overview</small>
+        </h1>
+        <!--<ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-th"></i> File Upload</a></li>
+            <li class="active">Overview
+                <div id="description">Hello</div>
+            </li>
+        </ol>-->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-md-12 col-lg-8">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <i class="fa fa-success"></i>
+                        <h3 class="box-title">@message</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        @if(!filename.isEmpty){
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a class='btn btn-xs btn-info pull-right' href='@routes.SparkInAction.inAction(filename);'>
+                                        See In Action <i class='fa fa-arrow-circle-right'></i>
+                                    </a>
+                                </li>
+                            </ol>
+                        }
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div> <!-- /.row -->
+
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+}

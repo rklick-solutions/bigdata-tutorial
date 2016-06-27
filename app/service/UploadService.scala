@@ -1,14 +1,13 @@
 package service
 
 
-import play.api.Logger
-import play.api.libs.Files.TemporaryFile
-import play.api.mvc.{MultipartFormData, Request}
 import java.util.UUID
 
 import com.google.common.io.Files
+import play.api.Logger
+import play.api.libs.Files.TemporaryFile
 import play.api.mvc.MultipartFormData.FilePart
-
+import play.api.mvc.{MultipartFormData, Request}
 
 
 /**
@@ -25,19 +24,19 @@ class UploadService {
     * @return
     */
 
-    def uploadFile(request: Request[MultipartFormData[TemporaryFile]]): String = {
+  def uploadFile(request: Request[MultipartFormData[TemporaryFile]]): (String, String) = {
     println("Called uploadFile function" + request)
     request.body.file("picture").map { picture =>
       import java.io.File
       val filename = picture.filename
-      val extension =Files.getFileExtension(filename)
+      val extension = Files.getFileExtension(filename)
       val contentType = picture.contentType
       log.error(s"File name : $filename, content type : $contentType")
       val newFileName = s"${UUID.randomUUID}.$extension"
-      picture.ref.moveTo(new File(s"/tmp/picture/$newFileName"))
-      "File uploaded"
+      picture.ref.moveTo(new File(s"/home/supriya/r3_upload/picture/$newFileName"))
+      ("File uploaded", newFileName)
     }.getOrElse {
-      "Missing file"
+      ("Missing File", "")
     }
   }
 
