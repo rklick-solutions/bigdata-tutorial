@@ -18,7 +18,7 @@ class SparkInAction extends Controller {
     "INDUSIND" -> "#BDB76B")
 
   def getPath(filename: String): String = {
-    s"/home/supriya/r3_upload/picture/$filename"
+    s"/tmp/picture/$filename"
   }
 
   //val path="tmp/picture/$newFilename"
@@ -66,6 +66,7 @@ class SparkInAction extends Controller {
       "table" -> table, "company" -> company, "bank" -> bank)
     Ok(data)
   }
+
 
   def applyFilter = Action {
     val filteredDF = df.filter(df("population").>(100000000))

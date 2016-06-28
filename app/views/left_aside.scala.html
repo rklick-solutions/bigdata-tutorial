@@ -12,16 +12,18 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">Tutorials</li>
-            <li class='@isActive("UploadFile")'>
-                <a href="@routes.UploadFile.file">
-                    <i class="fa fa-upload" aria-hidden="true"></i>
-                    <span>FileUpload</span>
-                </a>
-            </li>
+
             <li class='@isActive("Spark")'>
                 <a href="@routes.SparkOverview.overview">
                     <i class="fa fa-star-o"></i> <span>Apache Spark</span>
                     <strong class="label pull-right bg-gray">1.6.0</strong>
+                </a>
+            </li>
+
+            <li class='@isActive("UploadFile")'>
+                <a href="@routes.UploadFile.file">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                    <span>FileUpload</span>
                 </a>
             </li>
             <!--<li>
