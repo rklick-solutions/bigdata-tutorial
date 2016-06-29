@@ -1,11 +1,13 @@
 package controllers
 
+import com.google.inject.Inject
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{DataFrame, Row}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
-import utils.{PieChart, SparkCommons}
+import utils.{Common, PieChart, SparkCommons}
 
 import scala.concurrent.Future
 
@@ -15,7 +17,7 @@ import scala.concurrent.Future
 class SparkInAction extends Controller {
 
   implicit val pieChartFormat = Json.format[PieChart]
-  implicit val dataComponnetFormat = Json.format[DataComponent]
+  implicit val dataComponentFormat = Json.format[DataComponent]
 
   val COLOR = Map("Asia" -> "#f56954", "Europe" -> "#00a65a", "North America" -> "#f39c12", "Africa" -> "#00c0ef",
     "Oceania" -> "#3c8dbc", "Antarctica" -> "#d2d6de", "South America" -> "#DC143C", "HSBC" -> "#FF1493", "KOT" -> "#FF4500",
@@ -45,14 +47,6 @@ class SparkInAction extends Controller {
     Future(Ok(views.html.tutorials.bigdata.modal_function("Spark In Action", columns)))
   }
 
-  def getPath(filename: String): String = {
-    s"/tmp/picture/$filename"
-  }
-
-  private def loadDF(path: String): DataFrame = {
-    SparkCommons.sqlContext.read.json(path)
-  }
-
   val dataFile = "resources/countries-info.json"
   lazy val df: DataFrame = SparkCommons.sqlContext.read.json(dataFile)
     .select("countryCode", "countryName", "currencyCode", "population", "capital", "continentName", "languages")
@@ -68,7 +62,7 @@ class SparkInAction extends Controller {
   }
 
   def inAction(filename: String) = Action {
-    val dataFile = getPath(filename)
+    val dataFile = Common.getPath(filename)
     val dfData = loadDF(dataFile)
     val rows = dfData.take(20)
     val columns = getColumns(dfData)
@@ -91,7 +85,7 @@ class SparkInAction extends Controller {
     Future {
       request.body.asJson.map { data =>
         data.asOpt[DataComponent].map { dComponent =>
-          val df = loadDF(getPath(dComponent.filename))
+          val df = loadDF(Common.getPath(dComponent.filename))
           val (company, bank) = getPieChartData(df)
           val fCols = df.columns
           val rows = df.take(20)
@@ -100,8 +94,8 @@ class SparkInAction extends Controller {
           val data = Json.obj("current" -> df.count, "showing" -> rows.size,
             "table" -> table, "company" -> company, "bank" -> bank)
           Ok(data)
-        }.getOrElse(Ok("error"))
-      }.getOrElse(Ok("error"))
+        }.getOrElse(Ok(Common.ERROR))
+      }.getOrElse(Ok(Common.ERROR))
     }
   }
 
@@ -191,7 +185,6 @@ class SparkInAction extends Controller {
     Ok(data)
   }
 
-
   private def color(name: String): String = {
     COLOR.getOrElse(name, "#f56954")
   }
@@ -204,6 +197,10 @@ class SparkInAction extends Controller {
         PieChart(count, color(name), color(name), name)
       }
     (company, bank)
+  }
+
+  private def loadDF(path: String): DataFrame = {
+    SparkCommons.sqlContext.read.json(path)
   }
 
 }

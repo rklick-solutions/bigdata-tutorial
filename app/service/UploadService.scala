@@ -8,6 +8,7 @@ import play.api.Logger
 import play.api.libs.Files.TemporaryFile
 import play.api.mvc.MultipartFormData.FilePart
 import play.api.mvc.{MultipartFormData, Request}
+import utils.Common
 
 
 /**
@@ -33,7 +34,7 @@ class UploadService {
       val contentType = picture.contentType
       log.error(s"File name : $filename, content type : $contentType")
       val newFileName = s"${UUID.randomUUID}.$extension"
-      picture.ref.moveTo(new File(s"/tmp/picture/$newFileName"))
+      picture.ref.moveTo(new File(s"${Common.BASE_FILE_PATH}$newFileName"))
       ("File uploaded", newFileName)
     }.getOrElse {
       ("Missing File", "")
