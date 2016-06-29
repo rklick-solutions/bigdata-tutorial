@@ -32,3 +32,19 @@ var applyFunction = function(dataUrl) {
     });
 }
 
+var populateModal = function(columns) {
+  $.ajax({
+          type: "POST",
+          contentType: "application/json",
+          url: "/populate",
+          data: JSON.stringify(columns),
+          success: function(result) {
+            $("#modal_data").html(result);
+            $('#myModal').modal('show');
+          },
+          error: function(err) {
+             alert("error")
+          }
+   });
+}
+

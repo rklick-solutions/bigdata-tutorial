@@ -1,10 +1,11 @@
-@(page: String)
+@(page: String, columns: Array[String])
 
 <div class="box box-solid">
     <div class="box-header with-border">
         <i class="fa fa-star"></i>
         <h3 class="box-title">Functions</h3>
     </div><!-- /.box-header -->
+    <div id="modal_data"></div>
     <div class="box-body">
         <div class="box-group" id="accordion">
             <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
@@ -43,6 +44,9 @@
                         <a onclick='applyFunction("@routes.SparkInAction.applyReplace");' class="btn btn-app">
                             <i class="fa fa-chain-broken"></i> Replace
                         </a>
+                        <a onClick='populateModal("@columns.mkString(",")")' class="btn btn-app">
+                            <i class="fa fa-chain-broken"></i> Modal
+                        </a>
                     </div>
                 </div>
             </div>
@@ -63,4 +67,5 @@
             </div>
         </div>
     </div><!-- /.box-body -->
+
 </div><!-- /.box -->

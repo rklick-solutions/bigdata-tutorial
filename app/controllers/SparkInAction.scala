@@ -1,10 +1,13 @@
 package controllers
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{DataFrame, Row}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 import utils.{PieChart, SparkCommons}
+
+import scala.concurrent.Future
 
 /**
   * Created by anand on 2/16/16.
@@ -12,17 +15,42 @@ import utils.{PieChart, SparkCommons}
 class SparkInAction extends Controller {
 
   implicit val pieChartFormat = Json.format[PieChart]
+  implicit val dataComponnetFormat = Json.format[DataComponent]
 
   val COLOR = Map("Asia" -> "#f56954", "Europe" -> "#00a65a", "North America" -> "#f39c12", "Africa" -> "#00c0ef",
     "Oceania" -> "#3c8dbc", "Antarctica" -> "#d2d6de", "South America" -> "#DC143C", "HSBC" -> "#FF1493", "KOT" -> "#FF4500",
     "INDUSIND" -> "#BDB76B")
 
-  def getPath(filename: String): String = {
+  /**
+    *
+    * @param columns
+    * @return
+    */
+  def findColumns(columns: String) = Action.async {
+    Future(Ok("success"))
+  }
+
+  /**
+    *
+    * @return
+    */
+  def populateModal = Action.async { implicit request =>
+    val columns = request.body.asJson match {
+      case Some(data) =>
+        data.asOpt[String].map { value =>
+          value.split(",").toList
+        }.getOrElse(Nil)
+      case None => Nil
+    }
+
+    Future(Ok(views.html.tutorials.bigdata.modal_function("Spark In Action", columns)))
+  }
+
+  private def getPath(filename: String): String = {
     s"/home/supriya/r3_upload/picture/$filename"
   }
 
-  //val path="tmp/picture/$newFilename"
-  def loadDF(path: String): DataFrame = {
+  private def loadDF(path: String): DataFrame = {
     SparkCommons.sqlContext.read.json(path)
   }
 
@@ -47,7 +75,7 @@ class SparkInAction extends Controller {
     val columns = getColumns(dfData)
     val dataMap = rows.map { row => dfData.columns.map { col => (col -> row.getAs[Any](col)) }.toMap }
     Ok(views.html.tutorials.bigdata.spark_in_action("Spark In Action", dfData.count,
-      dfData.count, rows.size, columns, dataMap))
+      dfData.count, rows.size, columns, dataMap, columns))
   }
 
   def chartReport = Action {
@@ -56,15 +84,26 @@ class SparkInAction extends Controller {
     Ok(data)
   }
 
-  def applyCollect = Action {
-    val (company, bank) = getPieChartData(df)
-    val fCols = df.columns
-    val rows = df.take(20)
-    val dataMap = rows.map { row => fCols.map { col => (col -> row.getAs[Any](col)) }.toMap }
-    val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
-    val data = Json.obj("current" -> df.count, "showing" -> rows.size,
-      "table" -> table, "company" -> company, "bank" -> bank)
-    Ok(data)
+  /**
+    *
+    * @return
+    */
+  def applyCollect = Action.async { implicit request =>
+    Future {
+      request.body.asJson.map { data =>
+        data.asOpt[DataComponent].map { dComponent =>
+          val df = loadDF(getPath(dComponent.filename))
+          val (company, bank) = getPieChartData(df)
+          val fCols = df.columns
+          val rows = df.take(20)
+          val dataMap = rows.map { row => fCols.map { col => (col -> row.getAs[Any](col)) }.toMap }
+          val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
+          val data = Json.obj("current" -> df.count, "showing" -> rows.size,
+            "table" -> table, "company" -> company, "bank" -> bank)
+          Ok(data)
+        }.getOrElse(Ok("error"))
+      }.getOrElse(Ok("error"))
+    }
   }
 
   def applyFilter = Action {
@@ -169,3 +208,5 @@ class SparkInAction extends Controller {
 
 
 }
+
+case class DataComponent(filename: String, column: String)

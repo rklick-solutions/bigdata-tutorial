@@ -1,4 +1,4 @@
-@(page: String, total: Long, current: Long, showing: Long, cols: Array[String], dataMap: Array[Map[String, Any]])
+@(page: String, total: Long, current: Long, showing: Long, cols: Array[String], dataMap: Array[Map[String, Any]], columns: Array[String])
 
 @main(page) {
 
@@ -39,7 +39,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="row">
                     <div class="col-lg-12">
-                        @spark_functions(page)
+                        @spark_functions(page, columns)
                     </div>
                     <div class="col-lg-12">
                         @pie_chart(page)
