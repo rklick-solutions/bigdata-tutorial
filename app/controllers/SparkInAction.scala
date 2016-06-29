@@ -42,12 +42,11 @@ class SparkInAction extends Controller {
         }.getOrElse(Nil)
       case None => Nil
     }
-
     Future(Ok(views.html.tutorials.bigdata.modal_function("Spark In Action", columns)))
   }
 
-  private def getPath(filename: String): String = {
-    s"/home/supriya/r3_upload/picture/$filename"
+  def getPath(filename: String): String = {
+    s"/tmp/picture/$filename"
   }
 
   private def loadDF(path: String): DataFrame = {
@@ -105,6 +104,7 @@ class SparkInAction extends Controller {
       }.getOrElse(Ok("error"))
     }
   }
+
 
   def applyFilter = Action {
     val filteredDF = df.filter(df("population").>(100000000))
@@ -205,7 +205,6 @@ class SparkInAction extends Controller {
       }
     (company, bank)
   }
-
 
 }
 

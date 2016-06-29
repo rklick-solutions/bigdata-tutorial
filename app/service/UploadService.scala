@@ -33,7 +33,7 @@ class UploadService {
       val contentType = picture.contentType
       log.error(s"File name : $filename, content type : $contentType")
       val newFileName = s"${UUID.randomUUID}.$extension"
-      picture.ref.moveTo(new File(s"/home/supriya/r3_upload/picture/$newFileName"))
+      picture.ref.moveTo(new File(s"/tmp/picture/$newFileName"))
       ("File uploaded", newFileName)
     }.getOrElse {
       ("Missing File", "")
