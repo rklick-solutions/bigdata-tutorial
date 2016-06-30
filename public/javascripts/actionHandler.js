@@ -17,6 +17,10 @@ var updateTable = function(data) {
     $("#dataTableDiv").html(data);
 }
 
+var updateQuery = function(data) {
+   $('#queryDiv').html(data);
+}
+
 var applyFunction = function(dataUrl, column, filename) {
     startLoading();
     $.ajax({
@@ -29,6 +33,7 @@ var applyFunction = function(dataUrl, column, filename) {
             updateCount(result.current, result.showing);
             updateTable(result.table);
             drawPieChart(result.company, result.bank);
+            updateQuery(result.query);
         },
         error: function(err) {
             $('#myModal').modal('hide');

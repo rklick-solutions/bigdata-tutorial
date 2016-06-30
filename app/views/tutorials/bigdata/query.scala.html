@@ -1,0 +1,14 @@
+@(page: String)
+
+<div class="box box-default">
+    <div class="box-header with-border">
+        <i class="fa fa-cog"></i>
+        <h3 class="box-title">Query Report</h3>
+    </div>
+    <div class="box-body text-center">
+        <div id="queryDiv" class="chart"></div>
+        <div id="queryLoadingDiv" class="chart" hidden >
+            <img src='@routes.Assets.versioned("images/preloader.gif")' />
+        </div>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
