@@ -6,6 +6,7 @@ import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 import utils.{Common, PieChart, SparkCommons}
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
   * Created by anand on 2/16/16.
@@ -95,7 +96,7 @@ class SparkInAction extends Controller {
           val dF = loadDF(Common.getPath(dComponent.filename))
           val column = dComponent.column
           val (company, bank) = getPieChartData(dF, column)
-          val dFilter = dF.filter(dF(column))
+          val dFilter = dF.filter(dF(column).notEqual(""))
           val fCols = dFilter.columns
           val rows = dFilter.take(20)
           val dataMap = rows.map { row => fCols.map { col => (col -> row.getAs[Any](col)) }.toMap }
@@ -109,7 +110,6 @@ class SparkInAction extends Controller {
   }
 
   def applySort = Action.async { implicit request =>
-
     Future {
       request.body.asJson.map { data =>
         data.asOpt[DataComponent].map { dComponent =>
@@ -129,7 +129,6 @@ class SparkInAction extends Controller {
   }
 
   def applyDescribe = Action.async { implicit request =>
-
     Future {
       request.body.asJson.map { data =>
         data.asOpt[DataComponent].map { dComponent =>
@@ -149,7 +148,6 @@ class SparkInAction extends Controller {
   }
 
   def applyLimit(limit: Int) = Action.async { implicit request =>
-
     Future {
       request.body.asJson.map { data =>
         data.asOpt[DataComponent].map { dComponent =>
@@ -190,7 +188,6 @@ class SparkInAction extends Controller {
   }
 
   def applyDrop = Action.async { implicit request =>
-
     Future {
       request.body.asJson.map { data =>
         data.asOpt[DataComponent].map { dComponent =>
