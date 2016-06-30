@@ -17,27 +17,32 @@ var updateTable = function(data) {
     $("#dataTableDiv").html(data);
 }
 
-var applyFunction = function(dataUrl) {
+var applyFunction = function(dataUrl, column, filename) {
     startLoading();
     $.ajax({
+        type: "POST",
+        contentType: "application/json",
         url: dataUrl,
+        data: JSON.stringify({"column": column, "filename": filename}),
         success: function(result) {
+            $('#myModal').modal('hide');
             updateCount(result.current, result.showing);
             updateTable(result.table);
             drawPieChart(result.company, result.bank);
         },
         error: function(err) {
+            $('#myModal').modal('hide');
             updateCount(0, 0);
         }
     });
 }
 
-var populateModal = function(columns) {
+var populateModal = function(columns, filename, url) {
   $.ajax({
           type: "POST",
           contentType: "application/json",
           url: "/populate",
-          data: JSON.stringify(columns),
+          data: JSON.stringify({"column": columns, "filename": filename, "url": url}),
           success: function(result) {
             $("#modal_data").html(result);
             $('#myModal').modal('show');
@@ -47,4 +52,6 @@ var populateModal = function(columns) {
           }
    });
 }
+
+
 
