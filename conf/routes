@@ -14,7 +14,7 @@ POST    /FileUpload                 controllers.Application.upload
 GET     /spark/file                 controllers.UploadFile.file
 GET     /spark/overview             controllers.SparkOverview.overview
 GET     /spark/action               controllers.SparkInAction.inAction(filename: String)
-GET     /spark/action/collect       controllers.SparkInAction.applyCollect
+POST    /spark/action/collect       controllers.SparkInAction.applyCollect
 GET     /spark/action/filter        controllers.SparkInAction.applyFilter
 GET     /spark/action/sort          controllers.SparkInAction.applySort
 GET     /spark/action/limit         controllers.SparkInAction.applyLimit(limit: Int)
@@ -29,7 +29,6 @@ GET     /arch/overview              controllers.ArchitectureOverview.overview
 
 GET     /messages.js                controllers.JsMessagesController.jsMessages
 
-GET     /columns                    controllers.SparkInAction.findColumns(filename: String)
 POST    /populate                   controllers.SparkInAction.populateModal
 
 # Map static resources from the /public folder to the /assets URL path

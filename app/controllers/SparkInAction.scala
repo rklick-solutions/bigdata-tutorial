@@ -1,14 +1,12 @@
 package controllers
 
-import com.google.inject.Inject
-
-import scala.concurrent.ExecutionContext.Implicits.global
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{DataFrame, Row}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 import utils.{Common, PieChart, SparkCommons}
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 /**
@@ -25,26 +23,18 @@ class SparkInAction extends Controller {
 
   /**
     *
-    * @param columns
-    * @return
-    */
-  def findColumns(columns: String) = Action.async {
-    Future(Ok("success"))
-  }
-
-  /**
-    *
     * @return
     */
   def populateModal = Action.async { implicit request =>
-    val columns = request.body.asJson match {
-      case Some(data) =>
-        data.asOpt[String].map { value =>
-          value.split(",").toList
-        }.getOrElse(Nil)
-      case None => Nil
+    Future {
+      request.body.asJson.map { data =>
+        data.asOpt[DataComponent].map { dComponent =>
+          val columns = dComponent.column.split(",").toList
+          Ok(views.html.tutorials.bigdata.modal_function("Spark In Action", columns,
+            dComponent.filename, dComponent.url.getOrElse("")))
+        }.getOrElse(Ok("error"))
+      }.getOrElse(Ok("error"))
     }
-    Future(Ok(views.html.tutorials.bigdata.modal_function("Spark In Action", columns)))
   }
 
   val dataFile = "resources/countries-info.json"
@@ -68,7 +58,7 @@ class SparkInAction extends Controller {
     val columns = getColumns(dfData)
     val dataMap = rows.map { row => dfData.columns.map { col => (col -> row.getAs[Any](col)) }.toMap }
     Ok(views.html.tutorials.bigdata.spark_in_action("Spark In Action", dfData.count,
-      dfData.count, rows.size, columns, dataMap, columns))
+      dfData.count, rows.size, columns, dataMap, columns, filename))
   }
 
   def chartReport = Action {
@@ -86,7 +76,7 @@ class SparkInAction extends Controller {
       request.body.asJson.map { data =>
         data.asOpt[DataComponent].map { dComponent =>
           val df = loadDF(Common.getPath(dComponent.filename))
-          val (company, bank) = getPieChartData(df)
+          val (company, bank) = getPieChartData(df, dComponent.column)
           val fCols = df.columns
           val rows = df.take(20)
           val dataMap = rows.map { row => fCols.map { col => (col -> row.getAs[Any](col)) }.toMap }
@@ -98,7 +88,6 @@ class SparkInAction extends Controller {
       }.getOrElse(Ok(Common.ERROR))
     }
   }
-
 
   def applyFilter = Action {
     val filteredDF = df.filter(df("population").>(100000000))
@@ -189,11 +178,11 @@ class SparkInAction extends Controller {
     COLOR.getOrElse(name, "#f56954")
   }
 
-  private def getPieChartData(dataFrame: DataFrame): (Array[PieChart], Array[PieChart]) = {
-    val company = dataFrame.groupBy("continentName").count().collect().map { case Row(name: String, count: Long) =>
+  private def getPieChartData(dataFrame: DataFrame, column: String = ""): (Array[PieChart], Array[PieChart]) = {
+    val company = dataFrame.groupBy(column).count().collect().map { case Row(name: String, count: Long) =>
       PieChart(count, color(name), color(name), name)
     } //.sortBy(-_.value).take(10)
-    val bank = dataFrame.groupBy("countryCode").count().collect().map { case Row(name: String, count: Long) =>
+    val bank = dataFrame.groupBy(column).count().collect().map { case Row(name: String, count: Long) =>
         PieChart(count, color(name), color(name), name)
       }
     (company, bank)
@@ -205,4 +194,4 @@ class SparkInAction extends Controller {
 
 }
 
-case class DataComponent(filename: String, column: String)
+case class DataComponent(filename: String, column: String, url: Option[String] = None)

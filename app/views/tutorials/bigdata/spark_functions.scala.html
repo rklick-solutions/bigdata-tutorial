@@ -1,4 +1,4 @@
-@(page: String, columns: Array[String])
+@(page: String, columns: Array[String], filename: String)
 
 <div class="box box-solid">
     <div class="box-header with-border">
@@ -20,7 +20,7 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="box-body">
-                        <a onclick='applyFunction("@routes.SparkInAction.applyCollect");' class="btn btn-app">
+                        <a onClick='populateModal("@columns.mkString(",")", "@filename", "@routes.SparkInAction.applyCollect")' class="btn btn-app">
                             <i class="fa fa-list"></i> Collect
                         </a>
                         <a onclick='applyFunction("@routes.SparkInAction.applyFilter");' class="btn btn-app">
@@ -45,9 +45,7 @@
                         <a onclick='applyFunction("@routes.SparkInAction.applyReplace");' class="btn btn-app">
                             <i class="fa fa-chain-broken"></i> Replace
                         </a>
-                        <a onClick='populateModal("@columns.mkString(",")")' class="btn btn-app">
-                            <i class="fa fa-chain-broken"></i> Modal
-                        </a>
+
                     </div>
                 </div>
             </div>
