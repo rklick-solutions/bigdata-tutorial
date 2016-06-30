@@ -17,14 +17,18 @@ GET     /spark/action               controllers.SparkInAction.inAction(filename:
 GET     /spark/action/collect       controllers.SparkInAction.applyCollect
 GET     /spark/action/filter        controllers.SparkInAction.applyFilter
 GET     /spark/action/sort          controllers.SparkInAction.applySort
+GET     /spark/action/describe      controllers.SparkInAction.applyDescribe
 GET     /spark/action/limit         controllers.SparkInAction.applyLimit(limit: Int)
 GET     /spark/action/add           controllers.SparkInAction.applyAdd
 GET     /spark/action/drop          controllers.SparkInAction.applyDrop
 GET     /spark/action/duplicate     controllers.SparkInAction.applyReplace
 GET     /spark/action/distinct      controllers.SparkInAction.applyDistinct
+GET     /spark/action/select      controllers.SparkInAction.applySelect
+GET     /spark/action/count      controllers.SparkInAction.applyCount
+GET     /spark/action/show      controllers.SparkInAction.applyShow
+
 
 GET     /spark/action/report        controllers.SparkInAction.chartReport
-
 GET     /arch/overview              controllers.ArchitectureOverview.overview
 
 GET     /messages.js                controllers.JsMessagesController.jsMessages
