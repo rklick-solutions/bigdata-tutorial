@@ -50,14 +50,17 @@ class SparkInAction extends Controller {
     df.columns
   }
 
-  def inAction(filename: String) = Action {
-    val dataFile = Common.getPath(filename)
-    val dfData = loadDF(dataFile)
-    val rows = dfData.take(20)
-    val columns = getColumns(dfData)
-    val dataMap = rows.map { row => dfData.columns.map { col => (col -> row.getAs[Any](col)) }.toMap }
-    Ok(views.html.tutorials.bigdata.spark_in_action("Spark In Action", dfData.count,
-      dfData.count, rows.size, columns, dataMap, columns, filename))
+  def inAction = Action { implicit request =>
+    request.body.asFormUrlEncoded.map { data =>
+      val filename = data.get("filename").head.head
+      val dataFile = Common.getPath(filename)
+      val dfData = loadDF(dataFile)
+      val rows = dfData.take(20)
+      val columns = getColumns(dfData)
+      val dataMap = rows.map { row => dfData.columns.map { col => (col -> row.getAs[Any](col)) }.toMap }
+      Ok(views.html.tutorials.bigdata.spark_in_action("Spark In Action", dfData.count,
+        dfData.count, rows.size, columns, dataMap, columns, filename))
+    }.getOrElse(Ok("error"))
   }
 
   def chartReport = Action {
@@ -162,7 +165,7 @@ class SparkInAction extends Controller {
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
             "table" -> table, "company" -> company, "bank" -> bank, "query" ->
-          s"dF.filter(dF(${dComponent.column}).notEqual('')).limit(${limit})")
+              s"dF.filter(dF(${dComponent.column}).notEqual('')).limit(${limit})")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
       }.getOrElse(Ok(Common.ERROR))
@@ -184,7 +187,7 @@ class SparkInAction extends Controller {
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
             "table" -> table, "company" -> company, "bank" -> bank, "query" ->
-          s"dataFrame.withColumn('PUBLISHED', current_date())")
+              s"dataFrame.withColumn('PUBLISHED', current_date())")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
       }.getOrElse(Ok(Common.ERROR))
@@ -226,7 +229,7 @@ class SparkInAction extends Controller {
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
             "table" -> table, "company" -> company, "bank" -> bank, "query" ->
-          s"dataFrame.na.replace('*', ImmutableMap.of(0.0, 2222.0)).na.replace('*', ImmutableMap.of('0', 'Unknown'))")
+              s"dataFrame.na.replace('*', ImmutableMap.of(0.0, 2222.0)).na.replace('*', ImmutableMap.of('0', 'Unknown'))")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
       }.getOrElse(Ok(Common.ERROR))
@@ -251,7 +254,7 @@ class SparkInAction extends Controller {
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
             "table" -> table, "company" -> company, "bank" -> bank, "query" ->
-          s"dataFrame.select(${dComponent.column})"
+              s"dataFrame.select(${dComponent.column})"
           )
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))

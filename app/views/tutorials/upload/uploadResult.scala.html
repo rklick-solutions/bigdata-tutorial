@@ -3,7 +3,7 @@
 @main(title) {
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper" xmlns="http://www.w3.org/1999/html">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -33,9 +33,11 @@
                         @if(!filename.isEmpty){
                             <ol class="breadcrumb">
                                 <li>
-                                    <a class='btn btn-xs btn-info pull-right' href='@routes.SparkInAction.inAction(filename);'>
-                                        See In Action <i class='fa fa-arrow-circle-right'></i>
-                                    </a>
+                                    <form action="@routes.SparkInAction.inAction" method="POST">
+                                        <input type="hidden" name="filename" value="@filename" >
+                                        <input class='btn btn-xs btn-info pull-right fa-arrow-circle-right' type="submit" >
+                                        </input>
+                                    </form>
                                 </li>
                             </ol>
                         }

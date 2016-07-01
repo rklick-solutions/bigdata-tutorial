@@ -30,15 +30,6 @@
                         <h3 class="box-title">Alerts</h3>
                     </div>--><!-- /.box-header -->
                     <div class="box-body">
-                        <!--<form name="form-data" id="form-data" enctype="multipart/form-data" method="post" action="javascript:;">
-                            <div class="form-group">
-                                <label for="file">File</label>
-                                <input type="file" id="file" name="file">
-                                <p class="help-block">Select file for upload.</p>
-                            </div>
-                            <button type="submit" class="btn btn-info">Upload</button>
-                        </form>-->
-
                         @helper.form(action = routes.Application.upload, 'enctype -> "multipart/form-data") {
 
                         <input type="file" id="picture" name="picture">
