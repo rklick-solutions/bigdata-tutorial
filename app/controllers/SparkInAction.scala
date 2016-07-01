@@ -123,7 +123,7 @@ class SparkInAction extends Controller {
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
             "table" -> table, "company" -> company, "bank" -> bank, "query" ->
-              s"dataFrame.sort(dataFrame.col(${dComponent.column}))")
+              s"dataFrame.sort(${dComponent.column})")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
       }.getOrElse(Ok(Common.ERROR))
@@ -142,7 +142,7 @@ class SparkInAction extends Controller {
           val dataMap = rows.map { row => fCols.map { col => (col -> row.getAs[Any](col)) }.toMap }
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
-            "table" -> table, "company" -> company, "bank" -> bank, "query" -> "dataFrame.describe()")
+            "table" -> table, "company" -> company, "bank" -> bank, "query" -> s"dataFrame.describe(${dComponent.column})")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
       }.getOrElse(Ok(Common.ERROR))
@@ -265,7 +265,7 @@ class SparkInAction extends Controller {
         data.asOpt[DataComponent].map { dComponent =>
           val dF = loadDF(Common.getPath(dComponent.filename))
           val (company, bank) = getPieChartData(dF, dComponent.column)
-          val dFrame=dF.orderBy(asc(dComponent.column))
+          val dFrame=dF.orderBy(dComponent.column)
           val fCols = dFrame.columns
           val rows = dFrame.take(20)
           val dataMap = rows.map {
@@ -275,7 +275,7 @@ class SparkInAction extends Controller {
           }
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
-            "table" -> table, "company" -> company, "bank" -> bank, "query" -> "dataFrame.orderBy()")
+            "table" -> table, "company" -> company, "bank" -> bank, "query" -> s"dataFrame.orderBy(${dComponent.column})")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
       }.getOrElse(Ok(Common.ERROR))
@@ -298,7 +298,7 @@ class SparkInAction extends Controller {
           }
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
-            "table" -> table, "company" -> company, "bank" -> bank, "query" -> "dataFrame.show()")
+            "table" -> table, "company" -> company, "bank" -> bank, "query" -> s"dataFrame.show(${dComponent.column})")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
       }.getOrElse(Ok(Common.ERROR))
@@ -321,7 +321,7 @@ class SparkInAction extends Controller {
           }
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
-            "table" -> table, "company" -> company, "bank" -> bank, "query" -> "dataFrame.distinct()")
+            "table" -> table, "company" -> company, "bank" -> bank, "query" -> s"dataFrame.distinct(${dComponent.column})")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
       }.getOrElse(Ok(Common.ERROR))
