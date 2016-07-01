@@ -24,7 +24,7 @@ POST     /spark/action/drop          controllers.SparkInAction.applyDrop
 POST     /spark/action/duplicate     controllers.SparkInAction.applyReplace
 POST     /spark/action/distinct      controllers.SparkInAction.applyDistinct
 POST     /spark/action/select        controllers.SparkInAction.applySelect
-POST     /spark/action/count         controllers.SparkInAction.applyCount
+POST     /spark/action/orderBy         controllers.SparkInAction.applyOrderBy
 POST     /spark/action/show          controllers.SparkInAction.applyShow
 
 

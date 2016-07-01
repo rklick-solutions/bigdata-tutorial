@@ -74,14 +74,14 @@ class SparkInAction extends Controller {
     Future {
       request.body.asJson.map { data =>
         data.asOpt[DataComponent].map { dComponent =>
-          val df = loadDF(Common.getPath(dComponent.filename))
-          val (company, bank) = getPieChartData(df, dComponent.column)
+          val dF = loadDF(Common.getPath(dComponent.filename))
+          val (company, bank) = getPieChartData(dF, dComponent.column)
           //val dCollect = df.collect()
-          val fCols = df.columns
-          val rows = df.take(20)
+          val fCols = dF.columns
+          val rows = dF.take(20)
           val dataMap = rows.map { row => fCols.map { col => (col -> row.getAs[Any](col)) }.toMap }
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
-          val data = Json.obj("current" -> df.count, "showing" -> rows.size,
+          val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
             "table" -> table, "company" -> company, "bank" -> bank, "query" -> "dataFrame.collect()")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
@@ -116,7 +116,7 @@ class SparkInAction extends Controller {
         data.asOpt[DataComponent].map { dComponent =>
           val dF = loadDF(Common.getPath(dComponent.filename))
           val (company, bank) = getPieChartData(dF, dComponent.column)
-          val dataFrame = dF.sort(dF.col(dComponent.column))
+          val dataFrame = dF.sort((dComponent.column))
           val fCols = dataFrame.columns
           val rows = dataFrame.take(20)
           val dataMap = rows.map { row => fCols.map { col => (col -> row.getAs[Any](col)) }.toMap }
@@ -136,7 +136,7 @@ class SparkInAction extends Controller {
         data.asOpt[DataComponent].map { dComponent =>
           val dF = loadDF(Common.getPath(dComponent.filename))
           val (company, bank) = getPieChartData(dF, dComponent.column)
-          val dataFrame = dF.describe()
+          val dataFrame = dF.describe(dComponent.column)
           val fCols = dataFrame.columns
           val rows = dataFrame.take(20)
           val dataMap = rows.map { row => fCols.map { col => (col -> row.getAs[Any](col)) }.toMap }
@@ -259,14 +259,15 @@ class SparkInAction extends Controller {
     }
   }
 
-  def applyCount = Action.async { implicit request =>
+  def applyOrderBy = Action.async { implicit request =>
     Future {
       request.body.asJson.map { data =>
         data.asOpt[DataComponent].map { dComponent =>
           val dF = loadDF(Common.getPath(dComponent.filename))
           val (company, bank) = getPieChartData(dF, dComponent.column)
-          val fCols = dF.columns
-          val rows = dF.take(20)
+          val dFrame=dF.orderBy(asc(dComponent.column))
+          val fCols = dFrame.columns
+          val rows = dFrame.take(20)
           val dataMap = rows.map {
             row => fCols.map {
               col => (col -> row.getAs[Any](col))
@@ -274,7 +275,7 @@ class SparkInAction extends Controller {
           }
           val table = views.html.tutorials.bigdata.data_table(fCols, dataMap).toString
           val data = Json.obj("current" -> dF.count, "showing" -> rows.size,
-            "table" -> table, "company" -> company, "bank" -> bank, "query" -> "dataFrame.count()")
+            "table" -> table, "company" -> company, "bank" -> bank, "query" -> "dataFrame.orderBy()")
           Ok(data)
         }.getOrElse(Ok(Common.ERROR))
       }.getOrElse(Ok(Common.ERROR))
