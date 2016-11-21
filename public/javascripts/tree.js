@@ -2,7 +2,7 @@
 
         var json =
   {
-     "name": "Spark 1.6",
+     "name": "Spark 2.0.2",
      "icon": "/assets/images/spark-logo-hd.png",
      "children": [
          {
