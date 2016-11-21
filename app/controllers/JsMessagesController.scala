@@ -10,6 +10,7 @@ import play.api.mvc.{Action, Controller}
 class JsMessagesController @Inject()(jsMessagesFactory: JsMessagesFactory) extends Controller {
 
   val messages = jsMessagesFactory.all
+
   /**
     *
     */

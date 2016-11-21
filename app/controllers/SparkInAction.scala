@@ -1,20 +1,26 @@
 package controllers
-
+import com.google.inject.{Inject, Singleton}
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.{DataFrame, Row}
+import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 import utils.{Common, PieChart, SparkCommons}
-import scala.concurrent.Future
+
+
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 /**
   * Created by anand on 2/16/16.
   */
-class SparkInAction extends Controller {
+@Singleton
+class SparkInAction @Inject() extends Controller {
+
+
 
   implicit val pieChartFormat = Json.format[PieChart]
   implicit val dataComponentFormat = Json.format[DataComponent]
+
 
   val COLOR = Map("Asia" -> "#f56954", "Europe" -> "#00a65a", "North America" -> "#f39c12", "Africa" -> "#00c0ef",
     "Oceania" -> "#3c8dbc", "Antarctica" -> "#d2d6de", "South America" -> "#DC143C", "HSBC" -> "#FF1493", "KOT" -> "#FF4500",
@@ -35,6 +41,12 @@ class SparkInAction extends Controller {
       }.getOrElse(Ok("error"))
     }
   }
+
+/*  val sparkSession = SparkSession
+    .builder()
+    //master("local")
+    .appName("spark session example")
+    .getOrCreate()*/
 
   val dataFile = "resources/countries-info.json"
   lazy val df: DataFrame = SparkCommons.sqlContext.read.json(dataFile)
@@ -346,8 +358,11 @@ class SparkInAction extends Controller {
   }
 
   private def loadDF(path: String): DataFrame = {
+
     SparkCommons.sqlContext.read.json(path)
+    //SparkCommons.conf.read.format("json").json(path)
   }
 }
 
 case class DataComponent(filename: String, column: String, url: Option[String] = None)
+

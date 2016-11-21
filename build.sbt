@@ -11,7 +11,7 @@ scalaSource in Compile <<= baseDirectory / "src/scala"
 
 scalaVersion := Version.scala
 
-libraryDependencies ++= Seq(jdbc, cache, ws, specs2 % Test)
+libraryDependencies ++= Seq(specs2 % Test)
 
 libraryDependencies ++= Seq(
   "org.julienrf" % "play-jsmessages_2.11" % "2.0.0",
@@ -21,9 +21,7 @@ libraryDependencies ++= Seq(
 
 libraryDependencies ++= Dependencies.sparkLib
 
-dependencyOverrides ++= Set(
-  "com.fasterxml.jackson.core" % "jackson-databind" % "2.4.4"
-)
+dependencyOverrides ++= Set(Library.jackson)
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
@@ -33,4 +31,5 @@ ivyScala := ivyScala.value map { _.copy(overrideScalaVersion = true) }
 
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.
+// routesGenerator := StaticRoutesGenerator
 routesGenerator := InjectedRoutesGenerator
